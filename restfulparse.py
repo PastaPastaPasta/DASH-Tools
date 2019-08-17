@@ -47,10 +47,12 @@ def main():
     print('Inserting blocks:')
 
     printProgressBar(0, blocksToParse, prefix='Progress:', suffix='Complete', length=50)
+
     for i in range(blocksToParse):
         getblockbyhash(blockhash)
         # Update Progress Bar
-        printProgressBar(i + 1, blocksToParse, prefix='Progress:', suffix='Complete', length=50)
+        if (i+1) % 100 == 0: 
+            printProgressBar(i + 1, blocksToParse, prefix='Progress:', suffix='Complete', length=50)
 
 def getMaxBlockheight():
     global latestBlockheight
@@ -90,6 +92,8 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 3, 
         fill        - Optional  : bar fill character (Str)
     """
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    if (100*(iteration/float(total))) >= 1:
+        exit()
     filledLength = int(length * iteration // total)
     bar = fill * filledLength + '-' * (length - filledLength)
     print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix), end = '\r')
