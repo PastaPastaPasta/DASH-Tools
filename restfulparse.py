@@ -92,8 +92,6 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 3, 
         fill        - Optional  : bar fill character (Str)
     """
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-    if (100*(iteration/float(total))) >= 1:
-        exit()
     filledLength = int(length * iteration // total)
     bar = fill * filledLength + '-' * (length - filledLength)
     print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix), end = '\r')
